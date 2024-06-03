@@ -3,18 +3,26 @@ import random
 
 
 class MemeEngine:
+    """
+    This is a class that is used for setting up
+    our main script that is concating image with text.
+    """
 
     def __init__(self, out_path):
+        """
+        Arguments:
+            out_path {str} -- output path for our meme.
+        """
         self.out_path = out_path
 
     def make_meme(self, in_path, body=None, author=None, width=500):
-        """Create a Postcard With a Text Greeting
+        """Create a Meme With a Text
 
         Arguments:
             in_path {str} -- the file location for the input image.
-            out_path {str} -- the desired location for the output image.
-            crop {tuple} -- The crop rectangle, as a
-                (left, upper, right, lower)-tuple. Default=None.
+            body {str} -- Main text.
+                        Default=None
+            author {str} --  Author of the text. Default=None.
             width {int} -- The pixel width value. Default=None.
         Returns:
             str -- the file path to the output image.
