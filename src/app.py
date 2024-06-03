@@ -85,7 +85,7 @@ def meme_post():
 
     except Exception as err:
         print(f'Something goes wrong during uploading the image. Err: {err}')
-
+    '''
     finally:
         try:
             files = os.listdir(f'./tmp/')
@@ -96,7 +96,7 @@ def meme_post():
             print("All files from tmp folder deleted successfully.")
         except OSError:
             print("Error occurred while deleting files form tmp directory.")
-
+    '''
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run()
