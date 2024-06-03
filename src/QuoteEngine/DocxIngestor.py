@@ -10,7 +10,8 @@ class DocxIngestor(IngestorInterface):
     @classmethod
     def parse(cls, path) -> List[QuoteModel]:
         if not cls.can_ingest(path):
-            raise Exception('Cannot ingress exception, wrong file format. Please, use other interface.')
+            raise Exception('Cannot ingress exception, wrong file format. '
+                            'Please, use other interface.')
         quote = []
         try:
             doc = docx.Document(path)

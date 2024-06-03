@@ -13,7 +13,8 @@ class MemeEngine:
         Arguments:
             in_path {str} -- the file location for the input image.
             out_path {str} -- the desired location for the output image.
-            crop {tuple} -- The crop rectangle, as a (left, upper, right, lower)-tuple. Default=None.
+            crop {tuple} -- The crop rectangle, as a
+                (left, upper, right, lower)-tuple. Default=None.
             width {int} -- The pixel width value. Default=None.
         Returns:
             str -- the file path to the output image.
@@ -36,16 +37,22 @@ class MemeEngine:
 
         if body is not None:
             draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype('./_data/fonts/LilitaOne-Regular.ttf', size=25)
-            draw.text((x_text, y_text), body, font=font, fill='white', stroke_width=2, stroke_fill='black')
+            font = ImageFont.truetype('./_data/fonts/LilitaOne-Regular.ttf',
+                                      size=25)
+            draw.text((x_text, y_text), body, font=font, fill='white',
+                      stroke_width=2, stroke_fill='black')
 
         if author is not None:
             draw = ImageDraw.Draw(img)
-            font = ImageFont.truetype('./_data/fonts/LilitaOne-Regular.ttf', size=15)
-            draw.text((x_text+10, y_text+30), '- '+author, font=font, fill='white', stroke_width=2, stroke_fill='black')
+            font = ImageFont.truetype('./_data/fonts/LilitaOne-Regular.ttf',
+                                      size=15)
+            draw.text((x_text + 10, y_text + 30), '- ' + author, font=font,
+                      fill='white', stroke_width=2,
+                      stroke_fill='black')
 
         try:
-            out_path = self.out_path + '/' + str(random.randint(0, 1000000))+'.png'
+            out_path = self.out_path + '/' + \
+                       str(random.randint(0, 1000000)) + '.png'
             img.save(out_path)
             return out_path
         except Exception as err:

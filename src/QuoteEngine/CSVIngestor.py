@@ -10,7 +10,8 @@ class CSVIngestor(IngestorInterface):
     @classmethod
     def parse(cls, path) -> List[QuoteModel]:
         if not cls.can_ingest(path):
-            raise Exception('Cannot ingress exception, wrong file format. Please, use other interface.')
+            raise Exception('Cannot ingress exception, wrong file format. '
+                            'Please, use other interface.')
         quote = []
         try:
             df = pandas.read_csv(path, header=0)

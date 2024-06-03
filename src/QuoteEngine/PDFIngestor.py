@@ -12,7 +12,8 @@ class PDFIngestor(IngestorInterface):
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
         if not cls.can_ingest(path):
-            raise Exception('Cannot ingress exception, wrong file format. Please, use other interface.')
+            raise Exception('Cannot ingress exception, wrong file format. '
+                            'Please, use other interface.')
         try:
             tmp = f'./tmp/{random.randint(0, 1000000)}.txt'
             call = subprocess.call(['pdftotext', '-layout', path, tmp])
@@ -28,4 +29,6 @@ class PDFIngestor(IngestorInterface):
             os.remove(tmp)
             return quote
         except Exception as err:
-            print(f"Wrong formatting, file corrupted or pdftotext module error. Description: {err}")
+            print(f"Wrong formatting, file corrupted or "
+                  f"pdftotext module error. "
+                  f"Description: {err}")
