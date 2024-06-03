@@ -1,11 +1,12 @@
-import os.path
 import random
+import flask
 import requests
+import os
 from os import walk
-
-from flask import Flask, render_template, abort, request
+from flask import Flask, render_template
 from QuoteEngine.Ingestor import Ingestor
 from MemeGenerator.MemeEngine import MemeEngine
+from QuoteEngine.QuoteModel import QuoteModel
 
 
 app = Flask(__name__)
@@ -67,17 +68,34 @@ def meme_form():
 @app.route('/create', methods=['POST'])
 def meme_post():
     """ Create a user defined meme """
+    try:
+        image_url = flask.request.form['image_url']
+        r = requests.get(f'{image_url}')
+        tmp = f'./tmp/{random.randint(0, 100000000)}.png'
 
-    # @TODO:
-    # 1. Use requests to save the image from the image_url
-    #    form param to a temp local file.
-    # 2. Use the meme object to generate a meme using this temp
-    #    file and the body and author form paramaters.
-    # 3. Remove the temporary saved image.
+        with open(tmp, 'wb') as img:
+            img.write(r.content)
 
-    path = None
+        body = flask.request.form['body']
+        author = flask.request.form['author']
+        quote = QuoteModel(body, author)
+        path = meme.make_meme(tmp, quote.body, quote.author)
 
-    return render_template('meme.html', path=path)
+        return render_template('meme.html', path=path)
+
+    except Exception as err:
+        print(f'Something goes wrong during uploading the image. Err: {err}')
+
+    finally:
+        try:
+            files = os.listdir(f'./tmp/')
+            for file in files:
+                file_path = os.path.join(f'./tmp/', file)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            print("All files from tmp folder deleted successfully.")
+        except OSError:
+            print("Error occurred while deleting files form tmp directory.")
 
 
 if __name__ == "__main__":
