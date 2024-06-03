@@ -7,10 +7,21 @@ from .QuoteModel import QuoteModel
 
 
 class PDFIngestor(IngestorInterface):
+    """
+    Ingestor child class made for pdf files.
+    """
     allowed_extensions = ['pdf']
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:
+        """
+        Method that check if file type is correct and if it is
+        reads all rows inside a file.
+        Arguments:
+            path {str} -- input path for file.
+        Returns:
+            quote {List} -- returns list of quotes that was inside a file.
+        """
         if not cls.can_ingest(path):
             raise Exception('Cannot ingress exception, wrong file format. '
                             'Please, use other interface.')

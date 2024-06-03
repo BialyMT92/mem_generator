@@ -7,7 +7,14 @@ from MemeGenerator.MemeEngine import MemeEngine
 
 
 def generate_meme(path=None, body=None, author=None):
-    """ Generate a meme given a path and a quote """
+    """ Generate a meme with given path and quote.
+    Arguments:
+        path {str} -- the file location for the input image. Default = None
+        body {str} -- Main text. Default=None
+        author {str} --  Author of the text. Default=None.
+    Returns:
+        path -- the file path to the output image.
+    """
     img = None
     quote = None
 
