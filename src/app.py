@@ -32,7 +32,7 @@ def setup():
     imgs = []
     for (dirpath, dirnames, filenames) in walk(images_path):
         for f in filenames:
-            full_name = str(dirpath)+'\\'+f
+            full_name = str(dirpath)+'/'+f
             imgs.append(full_name)
     return quotes, imgs
 
