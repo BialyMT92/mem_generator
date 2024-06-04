@@ -4,6 +4,9 @@ import argparse
 from QuoteEngine.Ingestor import Ingestor
 from QuoteEngine.QuoteModel import QuoteModel
 from MemeGenerator.MemeEngine import MemeEngine
+from check_dir import check_dir
+
+check_dir()
 
 
 def generate_meme(path=None, body=None, author=None):

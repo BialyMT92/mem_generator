@@ -7,8 +7,9 @@ from flask import Flask, render_template
 from QuoteEngine.Ingestor import Ingestor
 from MemeGenerator.MemeEngine import MemeEngine
 from QuoteEngine.QuoteModel import QuoteModel
+from check_dir import check_dir
 
-
+check_dir()
 app = Flask(__name__)
 
 meme = MemeEngine('./static')
@@ -18,7 +19,6 @@ def setup():
     """
     Load all resources.
     """
-
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -32,7 +32,7 @@ def setup():
     imgs = []
     for (dirpath, dirnames, filenames) in walk(images_path):
         for f in filenames:
-            full_name = str(dirpath)+'/'+f
+            full_name = str(dirpath) + '/' + f
             imgs.append(full_name)
     return quotes, imgs
 

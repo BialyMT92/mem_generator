@@ -26,9 +26,6 @@ class PDFIngestor(IngestorInterface):
             raise Exception('Cannot ingress exception, wrong file format. '
                             'Please, use other interface.')
         try:
-            isExist = os.path.exists('./tmp')
-            if not isExist:
-                os.makedirs('./tmp')
             tmp = f'./tmp/{random.randint(0, 1000000)}.txt'
             call = subprocess.call(['pdftotext', '-layout', path, tmp])
             file_ref = open(tmp, "r")
